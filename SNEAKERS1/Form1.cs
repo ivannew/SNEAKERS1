@@ -15,7 +15,8 @@ namespace SNEAKERS1
         public Form1()
         {
             InitializeComponent();
-            PanelCambio(new menu());
+            PanelCambio(new listacs())
+                ;
         }
 
         private void label1_Click(object sender, EventArgs e)
