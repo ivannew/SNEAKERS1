@@ -122,5 +122,10 @@ namespace SNEAKERS1
             listaEnlazada.OrdenarPorPrecioDescendente();
             ActualizarDataGridView();
         }
+
+        private void listacs_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
