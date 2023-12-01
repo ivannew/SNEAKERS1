@@ -15,8 +15,7 @@ namespace SNEAKERS1
         public Form1()
         {
             InitializeComponent();
-            PanelCambio(new listacs())
-                ;
+            
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -99,6 +98,16 @@ namespace SNEAKERS1
             this.panel2.Controls.Add(fh);
             this.panel2.Tag = fh;
             fh.Show();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            PanelCambio(new listacs());
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            PanelCambio(new Form2());
         }
     }
 }

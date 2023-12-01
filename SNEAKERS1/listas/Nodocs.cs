@@ -8,14 +8,13 @@ namespace SNEAKERS1.listas
 {
     public class Nodo
     {
-        public Datos Datos { get; set; }
+        public Sneaker Sneaker { get; set; }
         public Nodo Siguiente { get; set; }
 
-        public Nodo(Datos datos)
+        public Nodo(Sneaker sneaker)
         {
-            Datos = datos;
+            Sneaker = sneaker;
             Siguiente = null;
         }
     }
-
 }

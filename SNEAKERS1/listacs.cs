@@ -1,101 +1,126 @@
 ﻿using SNEAKERS1.listas;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SNEAKERS1
 {
     public partial class listacs : Form
     {
-        private Nodo cabeza;
-        private int contadorId;
-
+        private ListaEnlazada listaEnlazada = new ListaEnlazada();
         public listacs()
         {
             InitializeComponent();
-            InicializarDatos();
-            CargarDatosEnDataGridView();
-
-            // Asociar el evento de clic al botón Guardar
-          button1.Click += btnGuardar_Click;
         }
 
-        private void InicializarDatos()
+        private void button1_Click(object sender, EventArgs e)
         {
-            cabeza = null;
-            contadorId = 1;
+    
         }
-
-        private void CargarDatosEnDataGridView()
+        private void ActualizarDataGridView()
         {
             dataGridView1.Rows.Clear();
 
-            Nodo actual = cabeza;
+            // Obtener la lista actual de sneakers
+            Nodo nodoActual = listaEnlazada.Primero;
 
-            while (actual != null)
+            while (nodoActual != null)
             {
-                DataGridViewRow fila = new DataGridViewRow();
-                fila.CreateCells(dataGridView1, actual.Datos.Id, actual.Datos.Marca, actual.Datos.Modelo, actual.Datos.Precio);
-                dataGridView1.Rows.Add(fila);
+                Sneaker sneakerActual = nodoActual.Sneaker;
 
-                actual = actual.Siguiente;
+                // Agregar una nueva fila al DataGridView con los datos del sneaker
+                dataGridView1.Rows.Add(sneakerActual.Id, sneakerActual.Modelo, sneakerActual.Marca, sneakerActual.Precio);
+
+                // Mover al siguiente nodo en la lista
+                nodoActual = nodoActual.Siguiente;
             }
         }
 
-        private void btnGuardar_Click(object sender, EventArgs e)
+
+        private void button2_Click(object sender, EventArgs e)
         {
-            // Obtener datos desde los TextBox
-            string marca = textBox1.Text;
-            string modelo = textBox2.Text;
-            decimal precio;
+           
+        }
 
-            // Validar y convertir el precio
-            if (!decimal.TryParse(textBox3.Text, out precio))
+        private void button3_Click(object sender, EventArgs e)
+        {
             {
-                MessageBox.Show("Por favor, ingrese un precio válido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                // Verificar si el usuario ingresó valores válidos para el ID y los nuevos datos
+                if (int.TryParse(textBox4.Text, out int idEditar) &&
+                    double.TryParse(textBox2.Text, out double nuevoPrecio))
+                {
+                    string nuevoModelo = textBox3.Text;
+                    string nuevaMarca = textBox1.Text;
+
+                    listaEnlazada.Editar(idEditar, nuevoModelo, nuevaMarca, nuevoPrecio);
+                    ActualizarDataGridView();
+                }
+                else
+                {
+                    MessageBox.Show("Ingrese valores válidos para el ID y los nuevos datos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
+            LimpiarCampos();
+        }
+        private void LimpiarCampos()
+        {
+            textBox3.Clear(); // Limpiar campo de modelo
+            textBox1.Clear(); // Limpiar campo de marca
+            textBox2.Clear(); // Limpiar campo de precio
+        }
 
-            // Crear un nuevo nodo con los datos ingresados
-            Datos nuevosDatos = new Datos
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            string modelo = textBox3.Text;
+            string marca = textBox1.Text;
+
+            // Verificar si el usuario ingresó un valor válido para el precio
+            if (double.TryParse(textBox2.Text, out double precio))
             {
-                Id = contadorId,
-                Marca = marca,
-                Modelo = modelo,
-                Precio = precio
-            };
+                Sneaker nuevoSneaker = new Sneaker(modelo, marca, precio);
+                listaEnlazada.Insertar(nuevoSneaker);
 
-            Nodo nuevoNodo = new Nodo(nuevosDatos);
-
-            // Agregar el nuevo nodo a la lista enlazada
-            if (cabeza == null)
-            {
-                cabeza = nuevoNodo;
+                ActualizarDataGridView();
             }
             else
             {
-                Nodo ultimo = cabeza;
-                while (ultimo.Siguiente != null)
-                {
-                    ultimo = ultimo.Siguiente;
-                }
-
-                ultimo.Siguiente = nuevoNodo;
+                MessageBox.Show("Ingrese un valor válido para el precio.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            LimpiarCampos();
 
-            // Incrementar el contador de ID
-            contadorId++;
-
-            // Actualizar el DataGridView
-            CargarDatosEnDataGridView();
         }
 
-        // Resto del código...
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            if (int.TryParse(textBox4.Text, out int idEliminar))
+            {
+                listaEnlazada.Eliminar(idEliminar);
+                ActualizarDataGridView();
+            }
+            else
+            {
+                MessageBox.Show("Ingrese un valor válido para el ID a eliminar.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void button4_Click_1(object sender, EventArgs e)
+        {
+
+            listaEnlazada.OrdenarPorPrecioDescendente();
+            ActualizarDataGridView();
+        }
     }
 }
