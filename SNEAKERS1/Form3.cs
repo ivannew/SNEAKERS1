@@ -77,7 +77,7 @@ namespace SNEAKERS1
 
                 miArreglo.Editar(selectedIndex, txtMarca.Text, txtModelo.Text, nuevoPrecio);
 
-                // Llamar al método para guardar los cambios
+          
                 miArreglo.GuardarCambios();
 
                 LimpiarTextBox();
@@ -103,7 +103,7 @@ namespace SNEAKERS1
 
         private void ConfigurarDataGridView()
         {
-            dataGridView1.AllowUserToAddRows = false; // Evitar la fila adicional al final
+            dataGridView1.AllowUserToAddRows = false; 
             dataGridView1.Columns.Add("Id", "Id");
             dataGridView1.Columns.Add("Marca", "Marca");
             dataGridView1.Columns.Add("Modelo", "Modelo");

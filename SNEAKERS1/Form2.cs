@@ -20,10 +20,10 @@ namespace SNEAKERS1
         {
             InitializeComponent();
 
-            // Inicializa miLista en el constructor
+          
             miLista = new ListaTenis(dataGridView1);
 
-            // Inicializar el DataGridView
+           
             ConfigurarDataGridView();
         }
 
@@ -31,10 +31,8 @@ namespace SNEAKERS1
         {
             if (miLista.Inicio != null)
             {
-                // Eliminar el primer elemento
                 miLista.EliminarPrimero();
 
-                // Actualizar el DataGridView
                 ActualizarDataGridView();
             }
             else
@@ -48,7 +46,6 @@ namespace SNEAKERS1
             string marca = txtMarca.Text;
             string modelo = txtModelo.Text;
 
-            // Validar y convertir el precio
             if (!double.TryParse(txtPrecio.Text, out double precio))
             {
                 MessageBox.Show("Por favor, ingrese un precio válido.");
@@ -57,13 +54,12 @@ namespace SNEAKERS1
 
             try
             {
-                // Crear un nuevo Sneaker sin especificar el ID
+        
                 Sneaker nuevoSneaker = new Sneaker(modelo, marca, precio);
 
-                // Agregar el Sneaker a la lista
+         
                 miLista.AgregarAlInicio(nuevoSneaker);
 
-                // Actualizar el DataGridView
                 ActualizarDataGridView();
             }
             catch (Exception ex)
@@ -74,10 +70,9 @@ namespace SNEAKERS1
 
         private void ActualizarDataGridView()
         {
-            // Limpiar el DataGridView
             dataGridView1.Rows.Clear();
 
-            // Recorrer la lista y agregar filas al DataGridView
+          
             Nodo actual = miLista.Inicio;
             while (actual != null)
             {
@@ -88,8 +83,8 @@ namespace SNEAKERS1
 
         private void ConfigurarDataGridView()
         {
-            // Agregar las columnas al DataGridView
-            dataGridView1.Columns.Add("Id", "Id");  // Agrega esta línea para la columna de ID
+            
+            dataGridView1.Columns.Add("Id", "Id");  
             dataGridView1.Columns.Add("Marca", "Marca");
             dataGridView1.Columns.Add("Modelo", "Modelo");
             dataGridView1.Columns.Add("Precio", "Precio");
@@ -106,33 +101,32 @@ namespace SNEAKERS1
 
             if (dataGridView1.SelectedRows.Count > 0)
             {
-                // Obtener el índice de la fila seleccionada
+             
                 int selectedIndex = dataGridView1.SelectedRows[0].Index;
 
-                // Obtener el Sneaker correspondiente a la fila seleccionada en tu lista enlazada
                 Nodo actual = miLista.Inicio;
                 for (int i = 0; i < selectedIndex && actual != null; i++)
                 {
                     actual = actual.Siguiente;
                 }
 
-                // Verificar que actual no sea nulo
+              
                 if (actual != null)
                 {
-                    // Obtener los valores editados de los TextBox
+                   
                     string nuevoModelo = txtModelo.Text;
                     string nuevaMarca = txtMarca.Text;
                     double nuevoPrecio;
 
-                    // Verificar si el precio ingresado es un valor válido
+                  
                     if (double.TryParse(txtPrecio.Text, out nuevoPrecio))
                     {
-                        // Actualizar el Sneaker con los valores editados
+                      
                         actual.Sneaker.Modelo = nuevoModelo;
                         actual.Sneaker.Marca = nuevaMarca;
                         actual.Sneaker.Precio = nuevoPrecio;
 
-                        // Actualizar el DataGridView
+                      
                         ActualizarDataGridView();
                     }
                     else

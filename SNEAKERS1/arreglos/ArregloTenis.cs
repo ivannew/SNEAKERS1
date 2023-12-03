@@ -10,7 +10,7 @@ namespace SNEAKERS1.arreglos
         private Sneaker[] tenisArray;
         private int capacidad;
         private int contador;
-        private DataGridView dataGridView1; // Agrega esta variable
+        private DataGridView dataGridView1; 
 
         public ArregloTenis(int capacidadInicial, DataGridView dataGridView)
         {
@@ -29,7 +29,7 @@ namespace SNEAKERS1.arreglos
                 tenisArray[contador] = nuevoSneaker;
                 contador++;
 
-                // Actualizar el DataGridView después de agregar un Sneaker
+               
                 ActualizarDataGridView();
             }
             else
@@ -45,7 +45,7 @@ namespace SNEAKERS1.arreglos
 
             for (int i = 0; i < contador; i++)
             {
-                // Asegúrate de usar tenisArray[i].Id, tenisArray[i].Marca, etc.
+       
                 dataGridView1.Rows.Add(tenisArray[i].Id, tenisArray[i].Marca, tenisArray[i].Modelo, tenisArray[i].Precio);
             }
         }
@@ -85,7 +85,7 @@ namespace SNEAKERS1.arreglos
                 tenisArray[indice].Modelo = nuevoModelo;
                 tenisArray[indice].Precio = nuevoPrecio;
 
-                // Llamar al método para guardar los cambios
+               
                 GuardarCambios();
 
                 ActualizarDataGridView();
@@ -106,8 +106,7 @@ namespace SNEAKERS1.arreglos
         }
         public void GuardarCambios()
         {
-            // Este es un ejemplo básico que guarda el contenido del arreglo en un archivo CSV
-            // Puedes personalizar esto según el método que estés utilizando para almacenar tus datos.
+ 
 
             try
             {
@@ -115,7 +114,7 @@ namespace SNEAKERS1.arreglos
                 {
                     for (int i = 0; i < contador; i++)
                     {
-                        // Escribe cada Sneaker en una línea del archivo CSV
+                      
                         writer.WriteLine($"{tenisArray[i].Id},{tenisArray[i].Marca},{tenisArray[i].Modelo},{tenisArray[i].Precio}");
                     }
                 }

@@ -24,23 +24,22 @@ namespace SNEAKERS1.Pila
         {
             int nuevoId = ObtenerUltimoId() + 1;
 
-            // Crear un nuevo Sneaker con el nuevo ID
+ 
             Sneaker nuevoSneaker = new Sneaker(nuevoId, datosTeni.Marca, datosTeni.Modelo, datosTeni.Precio);
 
             Nodo nuevoNodo = new Nodo(nuevoSneaker);
             nuevoNodo.Siguiente = Inicio;
             Inicio = nuevoNodo;
 
-            // Actualizar el DataGridView al agregar un nuevo Sneaker
             ActualizarDataGridView();
         }
 
         private void ActualizarDataGridView()
         {
-            // Limpiar el DataGridView
+           
             dataGridView1.Rows.Clear();
 
-            // Recorrer la lista y agregar filas al DataGridView
+        
             Nodo actual = Inicio;
             while (actual != null)
             {
@@ -84,7 +83,6 @@ namespace SNEAKERS1.Pila
                 return;
             }
 
-            // Establecer Inicio en el siguiente nodo
             Inicio = Inicio.Siguiente;
         }
 
@@ -92,13 +90,13 @@ namespace SNEAKERS1.Pila
         {
             Nodo actual = Inicio;
 
-            // Buscar el nodo que contiene el Sneaker con el modelo antiguo
+
             while (actual != null && actual.Sneaker.Modelo != modeloAntiguo)
             {
                 actual = actual.Siguiente;
             }
 
-            // Si se encontró el nodo, actualizar los valores
+        
             if (actual != null)
             {
                 actual.Sneaker.Modelo = nuevoModelo;

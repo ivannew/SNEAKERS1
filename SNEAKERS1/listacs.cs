@@ -20,17 +20,16 @@ namespace SNEAKERS1
         {
             dataGridView1.Rows.Clear();
 
-            // Obtener la lista actual de sneakers
+         
             Nodo nodoActual = listaEnlazada.Primero;
 
             while (nodoActual != null)
             {
                 Sneaker sneakerActual = nodoActual.Sneaker;
 
-                // Agregar una nueva fila al DataGridView con los datos del sneaker
                 dataGridView1.Rows.Add(sneakerActual.Id, sneakerActual.Modelo, sneakerActual.Marca, sneakerActual.Precio);
 
-                // Mover al siguiente nodo en la lista
+          
                 nodoActual = nodoActual.Siguiente;
             }
         }
@@ -44,7 +43,7 @@ namespace SNEAKERS1
         private void button3_Click(object sender, EventArgs e)
         {
             {
-                // Verificar si el usuario ingresó valores válidos para el ID y los nuevos datos
+       
                 if (int.TryParse(textBox4.Text, out int idEditar) &&
                     double.TryParse(textBox2.Text, out double nuevoPrecio))
                 {
@@ -87,7 +86,7 @@ namespace SNEAKERS1
             string modelo = textBox3.Text;
             string marca = textBox1.Text;
 
-            // Verificar si el usuario ingresó un valor válido para el precio
+   
             if (double.TryParse(textBox2.Text, out double precio))
             {
                 Sneaker nuevoSneaker = new Sneaker(modelo, marca, precio);

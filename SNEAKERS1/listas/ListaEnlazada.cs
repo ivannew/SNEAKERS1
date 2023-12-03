@@ -22,14 +22,14 @@ namespace SNEAKERS1.listas
             sneaker.Id = ++ultimoId;
             Nodo nuevoNodo = new Nodo(sneaker);
 
-            // Si la lista está vacía, el nuevo nodo será el primero y el último
+           
             if (Primero == null)
             {
                 Primero = nuevoNodo;
             }
             else
             {
-                // Encontrar el último nodo y enlazarlo con el nuevo nodo
+       
                 Nodo ultimoNodo = ObtenerUltimoNodo();
                 ultimoNodo.Siguiente = nuevoNodo;
             }
@@ -49,17 +49,16 @@ namespace SNEAKERS1.listas
             Nodo nodoActual = Primero;
             Nodo nodoAnterior = null;
 
-            // Buscar el nodo que contiene el sneaker con el ID especificado
+     
             while (nodoActual != null && nodoActual.Sneaker.Id != id)
             {
                 nodoAnterior = nodoActual;
                 nodoActual = nodoActual.Siguiente;
             }
 
-            // Si se encontró el nodo, eliminarlo
             if (nodoActual != null)
             {
-                // Si el nodo a eliminar es el primero
+               
                 if (nodoAnterior == null)
                 {
                     Primero = nodoActual.Siguiente;
@@ -74,13 +73,13 @@ namespace SNEAKERS1.listas
         {
             Nodo nodoActual = Primero;
 
-            // Buscar el nodo que contiene el sneaker con el ID especificado
+            
             while (nodoActual != null && nodoActual.Sneaker.Id != id)
             {
                 nodoActual = nodoActual.Siguiente;
             }
 
-            // Si se encontró el nodo, actualizar los datos del sneaker
+           
             if (nodoActual != null)
             {
                 nodoActual.Sneaker.Modelo = nuevoModelo;
@@ -104,7 +103,7 @@ namespace SNEAKERS1.listas
                     Nodo siguienteNodo = actual.Siguiente;
                     if (actual.Sneaker.Precio < siguienteNodo.Sneaker.Precio)
                     {
-                        // Intercambiar los nodos si el precio es menor
+                       
                         Sneaker temp = actual.Sneaker;
                         actual.Sneaker = siguienteNodo.Sneaker;
                         siguienteNodo.Sneaker = temp;
