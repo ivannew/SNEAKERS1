@@ -119,5 +119,10 @@ namespace SNEAKERS1
         {
             PanelCambio(new Form4());
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            PanelCambio(new Form5());
+        }
     }
 }
