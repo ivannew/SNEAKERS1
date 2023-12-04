@@ -15,7 +15,7 @@ namespace SNEAKERS1
         public Form1()
         {
             InitializeComponent();
-            
+            PanelCambio(new Form4());
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -113,6 +113,11 @@ namespace SNEAKERS1
         private void button1_Click(object sender, EventArgs e)
         {
             PanelCambio(new Form3());
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            PanelCambio(new Form4());
         }
     }
 }
