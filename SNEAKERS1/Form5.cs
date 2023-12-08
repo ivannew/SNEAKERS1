@@ -102,6 +102,16 @@ namespace SNEAKERS1
         {
             dataGridView1.Rows.Clear();
             MostrarNodoEnPantalla(miCola.Inicio);
+
+            // Limpiar campos después de mostrar la cola
+            LimpiarCampos();
+        }
+
+        private void LimpiarCampos()
+        {
+            txtNombreNodo.Clear();
+            txtPrecioNodo.Clear();
+            txtModeloNodo.Clear();
         }
         private void MostrarNodoEnPantalla(Nodo unNodo)
         {

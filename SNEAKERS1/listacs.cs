@@ -131,5 +131,11 @@ namespace SNEAKERS1
         {
 
         }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            listaEnlazada.OrdenarPorPrecioAscendente();
+            ActualizarDataGridView();
+        }
     }
 }

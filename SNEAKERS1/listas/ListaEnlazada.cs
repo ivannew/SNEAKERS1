@@ -117,5 +117,35 @@ namespace SNEAKERS1.listas
 
             } while (intercambio);
         }
+        public void OrdenarPorPrecioAscendente()
+        {
+            bool intercambio;
+            Nodo actual;
+            Nodo siguiente = null;
+
+            do
+            {
+                intercambio = false;
+                actual = Primero;
+
+                while (actual != null && actual.Siguiente != siguiente)
+                {
+                    Nodo siguienteNodo = actual.Siguiente;
+                    if (actual.Sneaker.Precio > siguienteNodo.Sneaker.Precio)
+                    {
+                        Sneaker temp = actual.Sneaker;
+                        actual.Sneaker = siguienteNodo.Sneaker;
+                        siguienteNodo.Sneaker = temp;
+
+                        intercambio = true;
+                    }
+
+                    actual = actual.Siguiente;
+                }
+                siguiente = actual;
+
+            } while (intercambio);
+        }
+
     }
 }

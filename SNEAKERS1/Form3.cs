@@ -160,5 +160,17 @@ namespace SNEAKERS1
             dataGridView1.Columns.Add("Modelo", "Modelo");
             dataGridView1.Columns.Add("Precio", "Precio");
         }
+
+        private void button4_Click_1(object sender, EventArgs e)
+        {
+            miArreglo.OrdenarPorPrecioDescendente();
+            ActualizarDataGridView();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            miArreglo.OrdenarPorPrecioAscendente();
+            ActualizarDataGridView();
+        }
     }
 }

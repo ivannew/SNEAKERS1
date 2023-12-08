@@ -54,19 +54,67 @@ namespace SNEAKERS1
 
             try
             {
-        
                 Sneaker nuevoSneaker = new Sneaker(modelo, marca, precio);
 
-         
                 miLista.AgregarAlInicio(nuevoSneaker);
 
                 ActualizarDataGridView();
+
+                // Limpiar campos después de agregar
+                LimpiarCampos();
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Error al agregar el tenis: {ex.Message}");
             }
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                int selectedIndex = dataGridView1.SelectedRows[0].Index;
+
+                Nodo actual = miLista.Inicio;
+                for (int i = 0; i < selectedIndex && actual != null; i++)
+                {
+                    actual = actual.Siguiente;
+                }
+
+                if (actual != null)
+                {
+                    string nuevoModelo = txtModelo.Text;
+                    string nuevaMarca = txtMarca.Text;
+                    double nuevoPrecio;
+
+                    if (double.TryParse(txtPrecio.Text, out nuevoPrecio))
+                    {
+                        Console.WriteLine($"Llamando a Editar con Modelo Antiguo: {actual.Sneaker.Modelo}, Nueva Marca: {nuevaMarca}, Nuevo Modelo: {nuevoModelo}, Nuevo Precio: {nuevoPrecio}");
+
+                        miLista.Editar(actual.Sneaker.Modelo, nuevaMarca, nuevoModelo, nuevoPrecio);
+
+                        ActualizarDataGridView();
+                        LimpiarCampos();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Ingrese un valor válido para el precio.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Seleccione una fila para editar.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void LimpiarCampos()
+        {
+            txtModelo.Clear();
+            txtMarca.Clear();
+            txtPrecio.Clear();
+        }
+
 
         private void ActualizarDataGridView()
         {
@@ -96,52 +144,7 @@ namespace SNEAKERS1
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-            if (dataGridView1.SelectedRows.Count > 0)
-            {
-             
-                int selectedIndex = dataGridView1.SelectedRows[0].Index;
-
-                Nodo actual = miLista.Inicio;
-                for (int i = 0; i < selectedIndex && actual != null; i++)
-                {
-                    actual = actual.Siguiente;
-                }
-
-              
-                if (actual != null)
-                {
-                   
-                    string nuevoModelo = txtModelo.Text;
-                    string nuevaMarca = txtMarca.Text;
-                    double nuevoPrecio;
-
-                  
-                    if (double.TryParse(txtPrecio.Text, out nuevoPrecio))
-                    {
-                      
-                        actual.Sneaker.Modelo = nuevoModelo;
-                        actual.Sneaker.Marca = nuevaMarca;
-                        actual.Sneaker.Precio = nuevoPrecio;
-
-                      
-                        ActualizarDataGridView();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Ingrese un valor válido para el precio.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
-            }
-            else
-            {
-                MessageBox.Show("Seleccione una fila para editar.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-
+      
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
           

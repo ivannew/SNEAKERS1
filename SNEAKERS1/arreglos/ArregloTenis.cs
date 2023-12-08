@@ -122,5 +122,43 @@ namespace SNEAKERS1.arreglos
                 MessageBox.Show($"Error al guardar cambios: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        public void OrdenarPorPrecioAscendente()
+        {
+            for (int i = 0; i < contador - 1; i++)
+            {
+                for (int j = 0; j < contador - 1 - i; j++)
+                {
+                    if (tenisArray[j].Precio > tenisArray[j + 1].Precio)
+                    {
+                        // Intercambiar elementos si están en el orden incorrecto
+                        Sneaker temp = tenisArray[j];
+                        tenisArray[j] = tenisArray[j + 1];
+                        tenisArray[j + 1] = temp;
+                    }
+                }
+            }
+
+            ActualizarDataGridView();
+        }
+
+        public void OrdenarPorPrecioDescendente()
+        {
+            for (int i = 0; i < contador - 1; i++)
+            {
+                for (int j = 0; j < contador - 1 - i; j++)
+                {
+                    if (tenisArray[j].Precio < tenisArray[j + 1].Precio)
+                    {
+                        // Intercambiar elementos si están en el orden incorrecto
+                        Sneaker temp = tenisArray[j];
+                        tenisArray[j] = tenisArray[j + 1];
+                        tenisArray[j + 1] = temp;
+                    }
+                }
+            }
+
+            ActualizarDataGridView();
+        }
+
     }
 }

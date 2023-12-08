@@ -71,7 +71,7 @@ namespace SNEAKERS1.Pila
             Nodo actual = Inicio;
             while (actual != null)
             {
-                Console.WriteLine($"Marca: {actual.Sneaker.Marca}, Modelo: {actual.Sneaker.Modelo}, Precio: {actual.Sneaker.Precio}");
+                Console.WriteLine($"Id: {actual.Sneaker.Id}, Marca: {actual.Sneaker.Marca}, Modelo: {actual.Sneaker.Modelo}, Precio: {actual.Sneaker.Precio}");
                 actual = actual.Siguiente;
             }
         }
@@ -80,34 +80,42 @@ namespace SNEAKERS1.Pila
         {
             if (Inicio == null)
             {
+                Console.WriteLine("La lista está vacía. No hay elementos para eliminar.");
                 return;
             }
 
             Inicio = Inicio.Siguiente;
+            Console.WriteLine("Primer elemento eliminado.");
+            MostrarLista(); // Muestra la lista después de la eliminación
         }
 
         public void Editar(string modeloAntiguo, string nuevaMarca, string nuevoModelo, double nuevoPrecio)
         {
             Nodo actual = Inicio;
 
-
             while (actual != null && actual.Sneaker.Modelo != modeloAntiguo)
             {
                 actual = actual.Siguiente;
             }
 
-        
             if (actual != null)
             {
+                Console.WriteLine($"Editando Sneaker: {actual.Sneaker.Id}, Modelo Antiguo: {modeloAntiguo}, Nueva Marca: {nuevaMarca}, Nuevo Modelo: {nuevoModelo}, Nuevo Precio: {nuevoPrecio}");
+
                 actual.Sneaker.Modelo = nuevoModelo;
                 actual.Sneaker.Marca = nuevaMarca;
                 actual.Sneaker.Precio = nuevoPrecio;
+
+                Console.WriteLine("Sneaker editado correctamente.");
+                MostrarLista(); // Muestra la lista después de la edición
             }
             else
             {
                 Console.WriteLine($"No se encontró un Sneaker con el modelo {modeloAntiguo} en la lista.");
             }
         }
+
+
 
 
     }
